@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+}
+
+.menu-contents {
+  height: 100px;
+  width: 200px;
+  outline: solid 1px black;
+  visibility: hidden;
+  position: absolute;
+  z-index: 99999;
+}
+
+.image-carousel {
+  outline: 1px solid black;
+  width: 3250px;
+  display: flex;
+  flex-grow: 0;
+  position: relative;
+}
+
+.image-carousel-container {
+  width: 640px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+img {
+  width: 640px; 
+}
+
+.animate {
+  animation-name: example;
+  animation-duration: 5s; 
+  animation-iteration-count: infinite;
+}
+
+@keyframes example {
+  0% {opacity: 25%}
+  30% {opacity: 100%}
+  100% {opacity: 100%}
+}
+
+.circle {
+  border: 1px solid black;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px
+}
+
+.circle-container {
+  margin: 0 auto;
+  margin-top: 2px;
+  display: flex;
+  gap: 5px;
+  width: fit-content;
+}
+
+.visible {
+  background-color: black;
+}
+
+.triangle-next {
+  border-right: 7px solid; 
+  border-bottom: 7px solid;
+  height: 30px;
+  width: 30px;
+  transform: rotate(-45deg);
+  position: relative;
+  right: 6px;
+}
+
+.triangle-prev {
+  border-right: 7px solid; 
+  border-bottom: 7px solid;
+  height: 30px;
+  width: 30px;
+  transform: rotate(135deg);
+  position: relative;
+  left: 6px;
+}
+
+.image-carousel__next,
+.image-carousel__prev {
+  height: 453px;
+  background-color:rgb(94, 38, 16);
+}
+
+.carousel {
+  background-color:rgb(94, 38, 16);
+  display: flex;
+  width: 732px;
+  height: 475px;
+  margin: 0 auto;
+  outline: 15px groove rgb(184, 136, 75);
+  margin-top: 15px;
+}
