@@ -29,16 +29,24 @@ img {
   width: 640px; 
 }
 
-.animate {
-  animation-name: example;
+.animate-next {
+  animation-name: next;
   animation-duration: 5s; 
-  animation-iteration-count: infinite;
 }
 
-@keyframes example {
-  0% {opacity: 25%}
-  30% {opacity: 100%}
-  100% {opacity: 100%}
+@keyframes next {
+  0% {margin-left: 100%;}
+  5%, 100% {margin-left: 0%;}
+}
+
+.animate-prev {
+  animation-name: prev;
+  animation-duration: 5s;
+}
+
+@keyframes prev {
+  0% {margin-left: -100%;}
+  5%, 100% {margin-left: 0%;}
 }
 
 .circle {

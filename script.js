@@ -23,9 +23,17 @@ let carousel = document.querySelector('.image-carousel');
 let carstyl = getComputedStyle(carousel);
 
 function animate() {
-  document.querySelector('.image-carousel').children.item((carstyl.right.replace(/\D/g,'') / 640)).classList.remove('animate');
-  void document.querySelector('.image-carousel').children.item((carstyl.right.replace(/\D/g,'') / 640)).offsetWidth;
-  document.querySelector('.image-carousel').children.item((carstyl.right.replace(/\D/g,'') / 640)).classList.add('animate');  
+  document.querySelector('.image-carousel').classList.remove('animate-next')
+  document.querySelector('.image-carousel').classList.remove('animate-prev')
+  void document.querySelector('.image-carousel').offsetWidth;
+  document.querySelector('.image-carousel').classList.add('animate-next');
+}
+
+function animatePrev() {
+  document.querySelector('.image-carousel').classList.remove('animate-next')
+  document.querySelector('.image-carousel').classList.remove('animate-prev')
+  void document.querySelector('.image-carousel').offsetWidth;
+  document.querySelector('.image-carousel').classList.add('animate-prev');
 }
 
 function slideCarousel(direction) {
@@ -38,7 +46,7 @@ function slideCarousel(direction) {
   if (direction == "prev") {
     if (parseInt(carstyl.right.replace(/\D/g,'')) > 0) {
       carousel.style.right = parseInt(carstyl.right.replace(/\D/g,'')) - 640 + "px";
-      animate()
+      animatePrev()
     }
   }
 }
@@ -66,8 +74,7 @@ for (let i = 0; i < carousel.children.length; i++) {
   newCircle.addEventListener('click', (e) => {
     Array.from(document.querySelector('.circle-container').children).forEach(child => child.classList.remove('visible'))
     e.target.classList.add('visible');
-    carousel.style.right = (640 * i) + "px";
-    animate();
+    carousel.style.right = (640 * i) + "px";   
   })
   document.querySelector('.circle-container').appendChild(newCircle);
 }
@@ -80,7 +87,6 @@ function autoSlide() {
   } else {
     carousel.style.right = "0px";
     updateCircles();
-    animate()
   }
 }
 
