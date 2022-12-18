@@ -17,6 +17,7 @@
   display: flex;
   flex-grow: 0;
   position: relative;
+  transition: ease 0.5s
 }
 
 .image-carousel-container {
@@ -27,26 +28,6 @@
 
 img {
   width: 640px; 
-}
-
-.animate-next {
-  animation-name: next;
-  animation-duration: 5s; 
-}
-
-@keyframes next {
-  0% {margin-left: 100%;}
-  5%, 100% {margin-left: 0%;}
-}
-
-.animate-prev {
-  animation-name: prev;
-  animation-duration: 5s;
-}
-
-@keyframes prev {
-  0% {margin-left: -100%;}
-  5%, 100% {margin-left: 0%;}
 }
 
 .circle {

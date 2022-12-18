@@ -21,32 +21,19 @@ let next = document.querySelector('.image-carousel__next');
 let prev = document.querySelector('.image-carousel__prev');
 let carousel = document.querySelector('.image-carousel');
 let carstyl = getComputedStyle(carousel);
+let autoTimer = setInterval(autoSlide, 5000)
 
-function animate() {
-  document.querySelector('.image-carousel').classList.remove('animate-next')
-  document.querySelector('.image-carousel').classList.remove('animate-prev')
-  void document.querySelector('.image-carousel').offsetWidth;
-  document.querySelector('.image-carousel').classList.add('animate-next');
-}
-
-function animatePrev() {
-  document.querySelector('.image-carousel').classList.remove('animate-next')
-  document.querySelector('.image-carousel').classList.remove('animate-prev')
-  void document.querySelector('.image-carousel').offsetWidth;
-  document.querySelector('.image-carousel').classList.add('animate-prev');
-}
+carousel.style.right = "0px";
 
 function slideCarousel(direction) {
   if (direction == "next") {
     if (parseInt(carstyl.right.replace(/\D/g,'')) < ((carousel.children.length - 1) * 640)) {
       carousel.style.right = parseInt(carstyl.right.replace(/\D/g,'')) + 640 + "px";
-      animate()
     }
   }
   if (direction == "prev") {
     if (parseInt(carstyl.right.replace(/\D/g,'')) > 0) {
       carousel.style.right = parseInt(carstyl.right.replace(/\D/g,'')) - 640 + "px";
-      animatePrev()
     }
   }
 }
@@ -58,11 +45,9 @@ function updateCircles() {
 
 next.addEventListener('click', () => {
   slideCarousel("next");
-  updateCircles();
   })
 prev.addEventListener('click', () => {
   slideCarousel("prev");
-  updateCircles();
   })
 
 for (let i = 0; i < carousel.children.length; i++) {
@@ -82,12 +67,14 @@ for (let i = 0; i < carousel.children.length; i++) {
 function autoSlide() {
   if (parseInt(carstyl.right.replace(/\D/g,'')) < ((carousel.children.length - 1) * 640)) {
     carousel.style.right = parseInt(carstyl.right.replace(/\D/g,'')) + 640 + "px";
-    updateCircles();
-    animate()
   } else {
     carousel.style.right = "0px";
-    updateCircles();
   }
 }
 
-setInterval(autoSlide, 5000)
+document.querySelector('.image-carousel').addEventListener('transitionend', () => {
+  updateCircles();
+  clearInterval(autoTimer)
+  autoTimer = setInterval(autoSlide, 5000)
+})
+
